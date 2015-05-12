@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <title>Blogger</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <% if (typeof message !== 'undefined' && message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title"><%= post.title %></h2>
+      </div>
+      <div class="panel-body">
+        Last updated on <%= post.lastUpdated %><BR/><BR/>
+        <%= post.content %><BR/>
+        <% if (post.image) { %>
+            <img src="<%= post.imageDataUri%>" style="height: 200px; width: 200px"/>
+        <% } %>
+      </div>
+    </div>
+
+</div>
+
+    <hr>
+
+    <div class="container">
+        <h3>Comments</h3>    
+        <table class="table table-striped">
+        <tbody>
+            <% for(var i=0; i < comments.length; i++) { %>
+            <tr>
+                <td><B><%= comments[i].commentedUser %></B> commented on <%= comments[i].date %></td>
+                <td><%= comments[i].comment %></td>
+            </tr>
+            <% } %>
+        </tbody>
+      </table>
+      <table class="table">
+        <tbody>
+            <tr>
+                <td>
+                    <% if(isAuthenticated) { %>
+                    <form action="/post/<%= post.id %>/comment" method="post">
+                        <div class="form-group">
+                            <label>Add your comments</label>
+                            <input type="text" class="form-control" name="comment">
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-lg">Post Comment</button>
+                    </form>
+                    <% } else { %>
+                    <h3>You must <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a> to post comments</h3>
+                    <% } %>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>  
+</body>
+</html>
