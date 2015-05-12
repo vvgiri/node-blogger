@@ -27,5 +27,5 @@ Time spent: 20 Hrs
 [] Users can edit their comments<BR/>
 [] Public user profiles show their information, posts and comments<BR/>
 
-GIF Walkthrough
+GIF Walkthrough [Not yet completed]
 ![GIF](VideoWalkthrough.gif)
